@@ -19,7 +19,7 @@ LIMIT 3; ```
 
 ### 2. 🏆 Rank Top Airlines by Traffic and Capacity
 - Find airlines with the highest flight and seat capacity.
-''' sql
+``` sql
 SELECT 
     Airline,
     SUM(All_flights) AS Total_Flights,
@@ -30,13 +30,13 @@ GROUP BY
     Airline
 ORDER BY 
     Total_Flights DESC, Total_Seat_Capacity DESC
-LIMIT 3;'''
+LIMIT 3;```
 
 
 
 ### 3. 🌍 Understand Route-Level Performance
 - Identify top-performing international routes by flight volume.
-''' sql
+``` sql
 Select Route, sum(all_flights) as max_flights from airlines
 where stops = '0'
 group by route
@@ -46,7 +46,7 @@ order by max_flights desc;'''
 FROM airlines
 WHERE stops = 0
 GROUP BY australian_city
-ORDER BY Leaststop ASC;'''
+ORDER BY Leaststop ASC;```
 
 ### 5. 🗺️ Regional and Country-Level Analysis
 - Rank regions based on total flights and seat count.
