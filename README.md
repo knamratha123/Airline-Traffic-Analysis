@@ -9,13 +9,15 @@ This project will showcase your SQL skills in answering real-world business ques
 ## 🎯 Project Objectives
 
 ### 1. 📅 Explore Time-Based Trends
-- Identify peak travel months and years.
-``` SQL
+- Identify peak travel months and years
+
+``` -- SQL
 SELECT Month_num, sum (all_flights) as max_flights
 FROM  Airlines
 GROUP BY Month_num
 ORDER BY max_flights DESC
-LIMIT 3; '''
+LIMIT 3;
+```
 
 ### 2. 🏆 Rank Top Airlines by Traffic and Capacity
 - Find airlines with the highest flight and seat capacity.
