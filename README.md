@@ -10,7 +10,8 @@ This project will showcase your SQL skills in answering real-world business ques
 
 ### 1. 📅 Explore Time-Based Trends
 - Identify peak travel months and years.
-'''SELECT Month_num, sum (all_flights) as max_flights
+''' SQL
+SELECT Month_num, sum (all_flights) as max_flights
 FROM  Airlines
 GROUP BY Month_num
 ORDER BY max_flights DESC
@@ -18,7 +19,8 @@ LIMIT 3;'''
 
 ### 2. 🏆 Rank Top Airlines by Traffic and Capacity
 - Find airlines with the highest flight and seat capacity.
-'''SELECT 
+''' sql
+SELECT 
     Airline,
     SUM(All_flights) AS Total_Flights,
     SUM(max_seats) AS Total_Seat_Capacity
@@ -34,7 +36,8 @@ LIMIT 3;'''
 
 ### 3. 🌍 Understand Route-Level Performance
 - Identify top-performing international routes by flight volume.
-'''Select Route, sum(all_flights) as max_flights from airlines
+''' sql
+Select Route, sum(all_flights) as max_flights from airlines
 where stops = '0'
 group by route
 order by max_flights desc;'''
