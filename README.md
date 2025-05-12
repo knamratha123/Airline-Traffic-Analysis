@@ -32,7 +32,8 @@ GROUP BY
     Airline
 ORDER BY 
     Total_Flights DESC, Total_Seat_Capacity DESC
-LIMIT 3;```
+LIMIT 3;
+```
 
 
 
@@ -42,14 +43,16 @@ LIMIT 3;```
 Select Route, sum(all_flights) as max_flights from airlines
 where stops = '0'
 group by route
-order by max_flights desc;'''
+order by max_flights desc;
+'''
 - Find the least-served routes.
 ''' --sql
 SELECT australian_city, COUNT(*) AS Leaststop
 FROM airlines
 WHERE stops = 0
 GROUP BY australian_city
-ORDER BY Leaststop ASC;```
+ORDER BY Leaststop ASC;
+```
 
 ### 5. 🗺️ Regional and Country-Level Analysis
 - Rank regions based on total flights and seat count.
@@ -62,7 +65,8 @@ SELECT
   RANK() OVER (ORDER BY SUM(Max_Seats) DESC) AS seat_rank
 FROM airlines
 GROUP BY Service_Region
-ORDER BY total_flights DESC;```
+ORDER BY total_flights DESC;
+```
 
 - Rank countries based on total flights and seat count.
 ``` --sql SELECT
@@ -73,7 +77,8 @@ ORDER BY total_flights DESC;```
   RANK() OVER (ORDER BY SUM("Max_Seats") DESC) AS seat_rank
 FROM airlines
 GROUP BY Service_Country
-ORDER BY total_flights DESC;```
+ORDER BY total_flights DESC;
+```
 
 - Track growth in travel from Southeast Asia, Northeast Asia
 ``` --sql
@@ -85,7 +90,8 @@ SELECT
 FROM your_table_name
 WHERE "Service_Region" IN ('SE Asia', 'NE Asia')
 GROUP BY Year, Service_Region
-ORDER BY Year, Service_Region;```
+ORDER BY Year, Service_Region;
+```
 
 ### 6. 🛑 Flight Stop Analysis
 - Analyze flight capacity and counts based on number of stops.
@@ -98,10 +104,11 @@ ORDER BY Year, Service_Region;```
   ROUND(AVG(max_seats)::numeric, 2) AS avg_seats_per_route
 FROM your_table_name
 GROUP BY stops
-ORDER BY stops;```
+ORDER BY stops;
+```
 
 - Compare direct vs. connecting routes in terms of performance.
-''' --sql
+``` --sql
 SELECT
   CASE 
     WHEN stops = 0 THEN 'Direct'
@@ -114,16 +121,18 @@ SELECT
   ROUND(AVG(max_seats)::numeric, 2) AS avg_seats_per_route
 FROM your_table_name
 GROUP BY route_type
-ORDER BY route_type;```
+ORDER BY route_type;
+```
 
 ### 7. 🏙️ Australian City-Level Insights
 - Find cities with the most international connections.
- ''' SELECT
+``` --sql SELECT
   australian_city,
   COUNT(DISTINCT international_city) AS total_connections
 FROM your_table_name
 GROUP BY australian_city
-ORDER BY total_connections DESC;'''
+ORDER BY total_connections DESC;
+'''
 
 - Track yearly growth of outbound flights for each city.
 ``` --sql
@@ -139,7 +148,8 @@ SELECT
 FROM your_table_name
 WHERE in_out = 'O'
 GROUP BY year, australian_city
-ORDER BY australian_city, year;```
+ORDER BY australian_city, year;
+```
 
 
 ## 🛠️ Tools Used
