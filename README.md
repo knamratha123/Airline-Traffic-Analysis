@@ -21,7 +21,7 @@ LIMIT 3;
 
 ### 2. 🏆 Rank Top Airlines by Traffic and Capacity
 - Find airlines with the highest flight and seat capacity.
-``` sql
+``` --sql
 SELECT 
     Airline,
     SUM(All_flights) AS Total_Flights,
@@ -38,13 +38,14 @@ LIMIT 3;```
 
 ### 3. 🌍 Understand Route-Level Performance
 - Identify top-performing international routes by flight volume.
-``` sql
+```-- sql
 Select Route, sum(all_flights) as max_flights from airlines
 where stops = '0'
 group by route
 order by max_flights desc;'''
 - Find the least-served routes.
-'''SELECT australian_city, COUNT(*) AS Leaststop
+''' --sql
+SELECT australian_city, COUNT(*) AS Leaststop
 FROM airlines
 WHERE stops = 0
 GROUP BY australian_city
@@ -52,7 +53,8 @@ ORDER BY Leaststop ASC;```
 
 ### 5. 🗺️ Regional and Country-Level Analysis
 - Rank regions based on total flights and seat count.
-'''SELECT
+``` -- SQL
+SELECT
   Service_Region,
   SUM(All_Flights) AS total_flights,
   SUM(Max_Seats) AS total_seats,
@@ -60,10 +62,10 @@ ORDER BY Leaststop ASC;```
   RANK() OVER (ORDER BY SUM(Max_Seats) DESC) AS seat_rank
 FROM airlines
 GROUP BY Service_Region
-ORDER BY total_flights DESC;'''
+ORDER BY total_flights DESC;```
 
 - Rank countries based on total flights and seat count.
-'''SELECT
+``` --sql SELECT
   Service_Country,
   SUM("All_Flights") AS total_flights,
   SUM("Max_Seats") AS total_seats,
@@ -71,10 +73,11 @@ ORDER BY total_flights DESC;'''
   RANK() OVER (ORDER BY SUM("Max_Seats") DESC) AS seat_rank
 FROM airlines
 GROUP BY Service_Country
-ORDER BY total_flights DESC;'''
+ORDER BY total_flights DESC;```
 
 - Track growth in travel from Southeast Asia, Northeast Asia
-'''SELECT
+``` --sql
+SELECT
   Year,
   Service_Region,
   SUM(All_Flights) AS total_flights,
@@ -82,11 +85,11 @@ ORDER BY total_flights DESC;'''
 FROM your_table_name
 WHERE "Service_Region" IN ('SE Asia', 'NE Asia')
 GROUP BY Year, Service_Region
-ORDER BY Year, Service_Region;'''
+ORDER BY Year, Service_Region;```
 
 ### 6. 🛑 Flight Stop Analysis
 - Analyze flight capacity and counts based on number of stops.
-'''SELECT
+``` --sql SELECT
   stops,
   COUNT(*) AS route_count,
   SUM(all_flights) AS total_flights,
@@ -95,10 +98,11 @@ ORDER BY Year, Service_Region;'''
   ROUND(AVG(max_seats)::numeric, 2) AS avg_seats_per_route
 FROM your_table_name
 GROUP BY stops
-ORDER BY stops;'''
+ORDER BY stops;```
 
 - Compare direct vs. connecting routes in terms of performance.
-'''SELECT
+''' --sql
+SELECT
   CASE 
     WHEN stops = 0 THEN 'Direct'
     ELSE 'Connecting'
@@ -110,7 +114,7 @@ ORDER BY stops;'''
   ROUND(AVG(max_seats)::numeric, 2) AS avg_seats_per_route
 FROM your_table_name
 GROUP BY route_type
-ORDER BY route_type;'''
+ORDER BY route_type;```
 
 ### 7. 🏙️ Australian City-Level Insights
 - Find cities with the most international connections.
@@ -122,7 +126,8 @@ GROUP BY australian_city
 ORDER BY total_connections DESC;'''
 
 - Track yearly growth of outbound flights for each city.
-'''SELECT
+``` --sql
+SELECT
   year,
   australian_city,
   SUM(all_flights) AS total_outbound_flights,
@@ -134,7 +139,7 @@ ORDER BY total_connections DESC;'''
 FROM your_table_name
 WHERE in_out = 'O'
 GROUP BY year, australian_city
-ORDER BY australian_city, year;'''
+ORDER BY australian_city, year;```
 
 
 ## 🛠️ Tools Used
