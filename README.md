@@ -44,7 +44,7 @@ Select Route, sum(all_flights) as max_flights from airlines
 where stops = '0'
 group by route
 order by max_flights desc;
-'''
+```
 - Find the least-served routes.
 ``` --sql
 SELECT australian_city, COUNT(*) AS Leaststop
@@ -69,7 +69,8 @@ ORDER BY total_flights DESC;
 ```
 
 - Rank countries based on total flights and seat count.
-``` --sql SELECT
+``` --sql
+SELECT
   Service_Country,
   SUM("All_Flights") AS total_flights,
   SUM("Max_Seats") AS total_seats,
@@ -95,7 +96,8 @@ ORDER BY Year, Service_Region;
 
 ### 6. 🛑 Flight Stop Analysis
 - Analyze flight capacity and counts based on number of stops.
-``` --sql SELECT
+``` --sql
+SELECT
   stops,
   COUNT(*) AS route_count,
   SUM(all_flights) AS total_flights,
@@ -126,7 +128,8 @@ ORDER BY route_type;
 
 ### 7. 🏙️ Australian City-Level Insights
 - Find cities with the most international connections.
-``` --sql SELECT
+``` --sql
+SELECT
   australian_city,
   COUNT(DISTINCT international_city) AS total_connections
 FROM airlines
