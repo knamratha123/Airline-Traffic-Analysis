@@ -46,7 +46,7 @@ group by route
 order by max_flights desc;
 '''
 - Find the least-served routes.
-''' --sql
+``` --sql
 SELECT australian_city, COUNT(*) AS Leaststop
 FROM airlines
 WHERE stops = 0
@@ -87,7 +87,7 @@ SELECT
   Service_Region,
   SUM(All_Flights) AS total_flights,
   SUM(Max_Seats) AS total_seats
-FROM your_table_name
+FROM airlines
 WHERE "Service_Region" IN ('SE Asia', 'NE Asia')
 GROUP BY Year, Service_Region
 ORDER BY Year, Service_Region;
@@ -102,7 +102,7 @@ ORDER BY Year, Service_Region;
   SUM(max_seats) AS total_seats,
   ROUND(AVG(all_flights)::numeric, 2) AS avg_flights_per_route,
   ROUND(AVG(max_seats)::numeric, 2) AS avg_seats_per_route
-FROM your_table_name
+FROM airlines
 GROUP BY stops
 ORDER BY stops;
 ```
@@ -119,7 +119,7 @@ SELECT
   SUM(max_seats) AS total_seats,
   ROUND(AVG(all_flights)::numeric, 2) AS avg_flights_per_route,
   ROUND(AVG(max_seats)::numeric, 2) AS avg_seats_per_route
-FROM your_table_name
+FROM airlines
 GROUP BY route_type
 ORDER BY route_type;
 ```
@@ -129,10 +129,10 @@ ORDER BY route_type;
 ``` --sql SELECT
   australian_city,
   COUNT(DISTINCT international_city) AS total_connections
-FROM your_table_name
+FROM airlines
 GROUP BY australian_city
 ORDER BY total_connections DESC;
-'''
+```
 
 - Track yearly growth of outbound flights for each city.
 ``` --sql
@@ -145,7 +145,7 @@ SELECT
     100.0 * (SUM(all_flights) - LAG(SUM(all_flights)) OVER (PARTITION BY australian_city ORDER BY year)) 
     / NULLIF(LAG(SUM(all_flights)) OVER (PARTITION BY australian_city ORDER BY year), 0), 2
   ) AS growth_percentage
-FROM your_table_name
+FROM airlines
 WHERE in_out = 'O'
 GROUP BY year, australian_city
 ORDER BY australian_city, year;
